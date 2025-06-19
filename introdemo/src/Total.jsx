@@ -7,4 +7,4 @@ const Total = ({course})=>{
     )
 }
 
-export default Total
+export default Total;
