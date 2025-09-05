@@ -151,10 +151,93 @@ body {
     position: static;
   }
 }
-#transactionInput{
+.transactionInput{
   width: 50%;
 }
 #addTransactionButton{
   margin-left: 2rem;
+}
+/* Form layout */
+.tx-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 12px;
+  align-items: end;
+  margin: 12px 0 16px;
+}
+
+@media (max-width: 800px) {
+  .tx-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.transactionInput {
+  padding: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #fff;
+}
+
+.transactionInput:focus {
+  outline: none;
+  border-color: #111;
+}
+
+/* Button */
+.addBtn {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #111;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  height: 40px;
+}
+
+.addBtn:hover { background: #333; }
+
+/* Muted helper text */
+.muted { color: #6b7280; margin: 8px 0; }
+
+/* Table */
+.tx-list { margin-top: 8px; }
+
+.tx-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden; /* rounds corners visually */
+}
+
+.tx-table th, .tx-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0f2f5;
+  font-size: 14px;
+}
+
+.tx-table thead th {
+  text-align: left;
+  background: #f9fafb;
+  font-weight: 700;
+}
+
+.tx-table tbody tr:last-child td {
+  border-bottom: none;
 }
 
