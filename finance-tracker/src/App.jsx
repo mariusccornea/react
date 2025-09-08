@@ -3,25 +3,14 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import SidebarItem from "./SidebarItem";
+import { useEffect } from "react";
+import { useRef } from "react";
+import Transactions from "./Transactions";
 
 function App() {
   const [tab, setTab] = useState("dashboard");
-  const [transactions, setTransactions] = useState([
-    {
-      amount: 60,
-      description: "stuff",
-      date: "14 may 2023",
-    },
-  ]);
-  const [amount, setAmount] = useState("");
-  const [description, setDescription] = useState("");
-  const [date, setDate] = useState("");
+  
 
-  const listTransactions = transactions.map((transaction) => (
-    <li>
-      {transaction.amount} {transaction.description} {transaction.date}
-    </li>
-  ));
   return (
     <div className="layout">
       {/* Left sidebar */}
@@ -72,100 +61,8 @@ function App() {
           )}
 
           {tab === "transactions" && (
-            <>
-              <form
-                className="tx-form"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  if (!amount || !date || !description) return;
-                  const newTransaction = {
-                    amount: Number(amount),
-                    description,
-                    date,
-                  };
-                  setTransactions([...transactions, newTransaction]);
-                  setAmount("");
-                  setDate("");
-                  setDescription("");
-                }}
-              >
-                <div className="form-row">
-                  <label htmlFor="amount">Amount</label>
-                  <input
-                    id="amount"
-                    className="transactionInput"
-                    type="number"
-                    placeholder="e.g. 59.99"
-                    value={amount}
-                    onChange={(e) => setAmount(e.target.value)}
-                    required
-                  />
-                </div>
-
-                <div className="form-row">
-                  <label htmlFor="description">Description</label>
-                  <input
-                    id="description"
-                    className="transactionInput"
-                    type="text"
-                    placeholder="e.g. Groceries"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    required
-                  />
-                </div>
-
-                <div className="form-row">
-                  <label htmlFor="date">Date</label>
-                  <input
-                    id="date"
-                    className="transactionInput"
-                    type="date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                    required
-                  />
-                </div>
-
-                <button type="submit" className="addBtn">
-                  Add Transaction
-                </button>
-              </form>
-
-              {/* Simple list/table view */}
-              <div className="tx-list">
-                {transactions.length === 0 ? (
-                  <p className="muted">No transactions yet.</p>
-                ) : (
-                  <table className="tx-table">
-                    <thead>
-                      <tr>
-                        <th>Date</th>
-                        <th>Description</th>
-                        <th style={{ textAlign: "right" }}>Amount</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {transactions.map((t, i) => (
-                        <tr key={i}>
-                          <td>
-                            {new Date(t.date).toLocaleDateString("en-GB", {
-                              day: "numeric",
-                              month: "long",
-                              year: "numeric",
-                            })}
-                          </td>
-                          <td>{t.description}</td>
-                          <td style={{ textAlign: "right" }}>
-                            {Number(t.amount).toFixed(2)}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                )}
-              </div>
-            </>
+            <Transactions/>
+          
           )}
 
           {tab === "categories" && (
@@ -179,5 +76,28 @@ function App() {
     </div>
   );
 }
+
+//save in local storage
+//componente
+//testE? CE PLM
+
+//add tailwind ( pe sapt cealalta)
+
+//first draft of db (tbs)
+
+// (pt viitor)
+//pt Dashboard : breakdwodn pe chart pe timeline (D, m, y, whatever)
+//butoane de plictisiti (pie charts)
+//React-Icons??
+// search (de vazut librarii)
+// accounts (tbd)
+// switch de dark mode
+// Tailwind, Chakra
+
+// Tabel:
+// user - Categories - Amount, Description, Date
+//User: ID(key),Name,Account ID
+//Transactions: ID(key), Account ID, Category ID, Amount, Description, Date
+//Category: Category ID, Category Desc.
 
 export default App;

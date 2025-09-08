@@ -102,3 +102,13 @@ body {
   color: var(--muted);
   margin: 0;
 }
+
+.deleteBtn{
+  appearance: none;
+  border: 1px solid var(--border);
+  background: gray;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
