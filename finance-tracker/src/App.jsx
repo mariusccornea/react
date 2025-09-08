@@ -79,7 +79,7 @@ function App() {
 
 //save in local storage
 //componente
-//testE? CE PLM
+//testE? CE PLM (tbd)
 
 //add tailwind ( pe sapt cealalta)
 
