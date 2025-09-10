@@ -159,10 +159,6 @@ body {
 }
 /* Form layout */
 .tx-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr auto;
-  gap: 12px;
-  align-items: end;
   margin: 12px 0 16px;
 }
 
@@ -174,7 +170,7 @@ body {
 
 .form-row {
   display: flex;
-  flex-direction: column;
+  flex-direction:column;
 }
 
 .form-row label {
@@ -239,5 +235,33 @@ body {
 
 .tx-table tbody tr:last-child td {
   border-bottom: none;
+}
+/* Layout for the whole row */
+.newTransactionRow {
+  display: flex;
+  align-items: flex-end; /* align button with bottom of inputs */
+  gap: 1rem;             /* spacing between items */
+  flex-wrap: wrap;       /* allow wrapping on small screens */
+  margin-bottom: 5rem;
+}
+
+/* Each form item behaves like a column (label + input) */
+.newTransactionRow .form-row {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 150px;  /* flex-grow, flex-shrink, flex-basis */
+  min-width: 150px; /* ensures inputs don't get too tiny */
+}
+
+/* Inputs/selects don’t stretch across entire row */
+.newTransactionRow .transactionInput,
+.newTransactionRow select.transactionInput {
+  width: auto;
+}
+
+/* Make the button align nicely with inputs */
+.newTransactionRow .addBtn {
+  white-space: nowrap;   /* prevent the text from wrapping */
+  padding: 8px 16px;
 }
 

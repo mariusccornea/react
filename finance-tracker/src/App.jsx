@@ -6,10 +6,52 @@ import SidebarItem from "./SidebarItem";
 import { useEffect } from "react";
 import { useRef } from "react";
 import Transactions from "./Transactions";
+import Categories from "./Categories";
 
 function App() {
   const [tab, setTab] = useState("dashboard");
-  
+
+ 
+  //local storage stuff
+  const STORAGE_KEY = "finance_tx_v1";
+
+  const [transactions, setTransactions] = useState(() => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      const parsed = raw ? JSON.parse(raw) : null;
+      if (Array.isArray(parsed)) return parsed;
+    } catch {}
+    return [
+      {
+        amount: 60,
+        description: "stuff",
+        date: "2023-05-14",
+        category: "Additional Expenses",
+      },
+    ];
+  });
+
+  useEffect(() => {
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(transactions));
+  }, [transactions]);
+
+  const total = transactions.reduce((sum, t) => {
+    return sum + Number(t.amount);
+  }, 0);
+  const numberOfTransactions = transactions.length;
+
+  const totalRent = transactions
+  .filter((t) => t.category === "Rent")
+  .reduce((sum, t) => sum + Number(t.amount), 0);
+  const totalAdditional = transactions
+  .filter((t) => t.category === "Additional Expenses")
+  .reduce((sum, t) => sum + Number(t.amount), 0);
+  const totalFood = transactions
+  .filter((t) => t.category === "Food")
+  .reduce((sum, t) => sum + Number(t.amount), 0);
+
+  // constal [totalAdditional, setTotalAdditional]=
 
   return (
     <div className="layout">
@@ -61,15 +103,18 @@ function App() {
           )}
 
           {tab === "transactions" && (
-            <Transactions/>
-          
+            <Transactions
+              transactions={transactions} 
+              setTransactions={setTransactions}
+            />
           )}
 
           {tab === "categories" && (
-            <div>
-              <h2>Categories</h2>
-              <p>Add/edit categories (income/expense). Keeps the app tidy.</p>
-            </div>
+            // <div>
+            //   <h2>Categories</h2>
+            //   <p>Add/edit categories (income/expense). Keeps the app tidy.</p>
+            // </div> 
+            <Categories totalRent={totalRent} totalAdditional={totalAdditional} totalFood={totalFood} />
           )}
         </section>
       </main>
