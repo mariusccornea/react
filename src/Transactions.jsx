@@ -14,6 +14,7 @@ function Transactions({ setTransactions, transactions }) {
   const categories = ["Rent", "Additional Expenses", "Food"];
   return (
     <div style={{ margin: "2rem" }}>
+  
       <div>
         <p>Number of transactions: {numberOfTransactions}</p>
         <p>Total Amount: {total}</p>
@@ -150,16 +151,18 @@ function Transactions({ setTransactions, transactions }) {
                         const newTransactions = transactions.filter(
                           (x) => x.id !== t.id
                         );
-                        const res = await fetch(`http://localhost:5000/transactions/${t.id}`, {
-                          method: "DELETE"
-                        });
+                        const res = await fetch(
+                          `http://localhost:5000/transactions/${t.id}`,
+                          {
+                            method: "DELETE",
+                          }
+                        );
 
                         const result = await res.json();
-                        console.log(result)
+                        console.log(result);
 
-                        if (result.success){
+                        if (result.success) {
                           setTransactions(newTransactions);
-
                         }
                       }}
                     >

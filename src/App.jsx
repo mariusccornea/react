@@ -9,12 +9,13 @@ import Transactions from "./Transactions";
 import Categories from "./Categories";
 import Dashboard from "./Dashboard";
 import { Route, Routes, Navigate, NavLink } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function App() {
 
 
   const [transactions, setTransactions] = useState([])
-
+  const location = useLocation();
 
  useEffect(() => {
   async function loadTransactions() {
@@ -28,7 +29,24 @@ function App() {
   }
 
   loadTransactions();
-}, []);
+}, [])
+//set document title based on TAB based on useLocaiton (very smart iubesc Reactu)
+  useEffect(()=>{
+    switch (location.pathname) {
+      case "/dashboard":
+        document.title = "Finance Tracker - Dashboard";
+        console.log(location)
+        break;
+      case "/transactions":
+        document.title = "Finance Tracker - Transactions";
+        break;
+      case "/categories":
+        document.title = "Finance Tracker - Categories";
+        break;
+      default:
+        document.title = "Finance Tracker";
+    }
+  }, [location]);
 
 
   const totalRent = transactions
@@ -83,15 +101,15 @@ function App() {
 // Done
 //save in local storage - done
 //componente - done 
-//react router
+//react router - done
 //add categories
 
 // TBDone
-//change TAB when changing page
+//change TAB when changing page - done
 //first draft of db - done
 //teste - running/ongoing
 //add tailwind
-//gandit ce urmeaza. 
+//gandit ce urmeaza : authentication, edit mode for transactions (introduce Updated), update DB as discussed
 
 
 // Backlog
