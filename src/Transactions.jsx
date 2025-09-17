@@ -99,6 +99,7 @@ function Transactions({ setTransactions, transactions }) {
           <div className="form-row">
             <label htmlFor="date">Date</label>
             <input
+            
               id="date"
               className="transactionInput"
               type="date"
@@ -108,7 +109,7 @@ function Transactions({ setTransactions, transactions }) {
             />
           </div>
 
-          <div className="form-row">
+          <div className="btn bg-black text-white border-black">
             <button type="submit" className="addBtn">
               Add Transaction
             </button>
@@ -146,7 +147,7 @@ function Transactions({ setTransactions, transactions }) {
                   <td>{t.category}</td>
                   <td>
                     <button
-                      className="deleteBtn"
+                    className="btn"
                       onClick={async () => {
                         const newTransactions = transactions.filter(
                           (x) => x.id !== t.id

@@ -10,6 +10,7 @@ import Categories from "./Categories";
 import Dashboard from "./Dashboard";
 import { Route, Routes, Navigate, NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import "./index.css";
 
 function App() {
 
@@ -61,12 +62,13 @@ function App() {
 
 
   return (
+    
     <div className="layout">
      
       {/* Left sidebar */}
       <aside className="sidebar" >
         <div className="sidebar-header">
-          <span className="brand">Finance Tracker</span>
+          <span className="text-2xl font-bold">Finance Tracker</span>
         </div> 
         <NavLink to="/dashboard" className="nav-item">
           Dashboard
@@ -108,8 +110,8 @@ function App() {
 //change TAB when changing page - done
 //first draft of db - done
 //teste - running/ongoing
-//add tailwind
-//gandit ce urmeaza : authentication, edit mode for transactions (introduce Updated), update DB as discussed
+//add tailwind - done
+//gandit ce urmeaza : authentication, edit mode for transactions (introduce Updated), update DB as discussed ( dupa schema de mai jos)
 
 
 // Backlog

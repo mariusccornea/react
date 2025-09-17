@@ -38,7 +38,7 @@ app.post("/transactions", (req, res) => {
 
 app.delete("/transactions/:id", (req, res) => {
     const { id } = req.params;
-    db.prepare().run(id);
+    db.prepare("DELETE FROM transactions WHERE id = ?").run(id);
     res.json({ success: true });
   });
   
